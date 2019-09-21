@@ -1,0 +1,139 @@
+:root {
+  --primary-color: #393e46;
+  --secondary-color: #eeeeee;
+  --font-color: #eeeeee;
+  --bg-color: #393e46;
+  --player-one-color: #99e1e5;
+  --player-two-color: #fbafaf;
+}
+
+html {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  color: var(--font-color);
+  background-color: var(--bg-color);
+  text-align: center;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  padding: 2rem 0 0.5rem 0;
+  margin: 0;
+  font-size: 2.5em;
+  color: var(--font-color);
+  text-transform: uppercase;
+}
+
+.board {
+  width: 20rem;
+  height: 20rem;
+  background-color: var(--secondary-color);
+  margin: 3rem 0 6rem 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  justify-content: stretch;
+  grid-gap: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  background-color: var(--primary-color);
+  font-weight: 900;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.player-one {
+  color: var(--player-one-color);
+}
+
+.player-two {
+  color: var(--player-two-color);
+}
+
+p {
+  margin: 0;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+}
+
+input[type="text"] {
+  padding: 0;
+  margin: 0;
+  width: 220px;
+  background-color: var(--primary-color);
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  color: var(--font-color);
+  border: none;
+  box-shadow: 0 2px var(--secondary-color);
+}
+
+input[type="text"] {
+  outline: none;
+}
+
+.score {
+  display: grid;
+  grid-template: 1fr 1fr/3fr 1fr;
+  min-width: 220px;
+  display: none;
+}
+
+.player-one-name,
+.player-two-name {
+  justify-self: left;
+}
+
+button {
+  border: solid var(--secondary-color) 5px;
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 900;
+  overflow: hidden;
+  margin: 4rem 0 2rem 0;
+  padding: 0;
+  text-transform: uppercase;
+  width: 160px;
+  height: 60px;
+  transition: 0.6s;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+footer {
+  flex-shrink: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--font-color);
+  opacity: 0.75;
+}
+
+a {
+  color: var(--font-color);
+}
