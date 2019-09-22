@@ -76,6 +76,10 @@ p {
   font-size: 1.5rem;
 }
 
+.player-form {
+  display: none;
+}
+
 input[type="text"] {
   padding: 0;
   margin: 0;
@@ -87,6 +91,7 @@ input[type="text"] {
   color: var(--font-color);
   border: none;
   box-shadow: 0 2px var(--secondary-color);
+  cursor: pointer;
 }
 
 input[type="text"] {
@@ -95,14 +100,18 @@ input[type="text"] {
 
 .score {
   display: grid;
-  grid-template: 1fr 1fr/3fr 1fr;
+  grid-template: 1fr 1fr 1fr/3fr 1fr;
   min-width: 220px;
-  display: none;
+  /* display: none; */
 }
 
 .player-one-name,
 .player-two-name {
   justify-self: left;
+}
+
+.result {
+  grid-column: 1/3;
 }
 
 button {
@@ -112,6 +121,7 @@ button {
   font: inherit;
   font-size: 1.5rem;
   font-weight: 900;
+  cursor: pointer;
   overflow: hidden;
   margin: 4rem 0 2rem 0;
   padding: 0;
