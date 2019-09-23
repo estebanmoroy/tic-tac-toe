@@ -226,7 +226,27 @@ function newRoundEventHandler() {
   $(".result").style.display = "none";
 }
 
-function newMatchEventHandler() {}
+function newMatchEventHandler() {
+  game.resetBoard();
+  renderBoard();
+  //Clears the result in the score-board
+  $(".player-one-score").textContent = match.getPlayerOneScore();
+  $(".player-two-score").textContent = match.getPlayerTwoScore();
+  $(".result").style.display = "none";
+  $(".result").textContent = "";
+  $(".score").style.display = "none";
+  //Renders the player form
+  $(".player-form").style.display = "block";
+  //Removes the buttons, renders a start button
+  while ($(".action-container").hasChildNodes())
+    $(".action-container").removeChild($(".action-container").firstChild);
+  $(".action-container").appendChild(getActionButton("start"));
+  /*Removes listeners so the players can no-longer play
+  when the match is over*/
+  Array.from($$(".cell")).forEach(cell => {
+    cell.removeEventListener("click", makePlayEventHandler);
+  });
+}
 
 function getActionButton(action) {
   const button = document.createElement("button");
