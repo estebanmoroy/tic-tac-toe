@@ -141,7 +141,6 @@ const gameController = (() => {
         $(".player-two-score").textContent = match.getPlayerTwoScore();
         $(".result").style.display = "block";
         $(".result").textContent = `${winnerName} has won the game! 🎉`;
-
         //TODO remove listeners so the players can no-longer play
         //replace reset button with play again
       }
@@ -218,29 +217,3 @@ function getActionButton(action) {
   }
   return button;
 }
-
-// const startRound = () => {
-// };
-
-// const declareRoundWinner = playerNumber => {
-//   Array.from($$(".cell")).forEach(cell => {
-//     cell.removeEventListener("click", makePlayEventHandler);
-//   });
-//   playerNumber === 1 ? (playerOne.score += 1) : (playerTwo.score += 1);
-//   $("player-one-score").textContent = playerOne.score;
-//   $("player-two-score").textContent = playerTwo.score;
-
-//   while ($(".action-container").firstChild) {
-//     $(".action-container").removeChild($(".action-container").firstChild);
-//   }
-//   $(".action-container").appendChild(getActionButton("play again"));
-//   $(".action-container").appendChild(getActionButton("new match"));
-// };
-
-// const reset = () => {
-//   game.resetBoard();
-//   renderBoard();
-// };
-
-// return { startNew, startRound, declareRoundWinner };
-// })();
