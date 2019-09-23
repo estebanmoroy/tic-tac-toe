@@ -212,9 +212,21 @@ function resetEventHandler() {
   renderBoard();
 }
 
-function newMatchEventHandler() {}
+function newRoundEventHandler() {
+  game.resetBoard();
+  renderBoard();
+  Array.from($$(".cell")).forEach(cell => {
+    cell.addEventListener("click", makePlayEventHandler);
+  });
+  $(".action-container").removeChild($(".action-container").firstChild);
+  $(".action-container").insertBefore(
+    getActionButton("reset"),
+    $(".action-container").firstChild
+  );
+  $(".result").style.display = "none";
+}
 
-function newRoundEventHandler() {}
+function newMatchEventHandler() {}
 
 function getActionButton(action) {
   const button = document.createElement("button");
