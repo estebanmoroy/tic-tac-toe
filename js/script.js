@@ -95,6 +95,14 @@ const match = (() => {
 })();
 
 const renderBoard = () => {
+  //Clears the board
+  game.getBoard().forEach((cell, index) => {
+    if ($(`div[data-id='${index}']`).hasChildNodes())
+      $(`div[data-id='${index}']`).removeChild(
+        $(`div[data-id='${index}']`).firstChild
+      );
+  });
+
   const makeChip = playerValue => {
     const chip = document.createElement("div");
     switch (playerValue) {
@@ -136,13 +144,24 @@ const gameController = (() => {
         game.checkForWinner() === 1
           ? (winnerName = match.getPlayerOneName())
           : (winnerName = match.getPlayerTwoName());
+        //Logs the result of the round
         match.declareRoundWinner(game.checkForWinner());
+        //Renders the result in the score-board
         $(".player-one-score").textContent = match.getPlayerOneScore();
         $(".player-two-score").textContent = match.getPlayerTwoScore();
         $(".result").style.display = "block";
         $(".result").textContent = `${winnerName} has won the game! 🎉`;
-        //TODO remove listeners so the players can no-longer play
-        //replace reset button with play again
+        /*Removes listeners so the players can no-longer play
+        when the round is over*/
+        Array.from($$(".cell")).forEach(cell => {
+          cell.removeEventListener("click", makePlayEventHandler);
+        });
+        //replaces reset button with play again
+        $(".action-container").removeChild($(".action-container").firstChild);
+        $(".action-container").insertBefore(
+          getActionButton("play again"),
+          $(".action-container").firstChild
+        );
       }
     }
   };
@@ -158,16 +177,18 @@ const gameController = (() => {
 
 gameController.initialize();
 
+//Event Handlers
+function makePlayEventHandler(event) {
+  if (!event.target.hasChildNodes())
+    gameController.makePlay(event.target.dataset.id);
+}
+
 function startMatchEventHandler() {
-  const makePlayEventHandler = event => {
-    if (!event.target.hasChildNodes())
-      gameController.makePlay(event.target.dataset.id);
-  };
   Array.from($$(".cell")).forEach(cell => {
     cell.addEventListener("click", makePlayEventHandler);
   });
 
-  while ($(".action-container").firstChild)
+  while ($(".action-container").hasChildNodes())
     $(".action-container").removeChild($(".action-container").firstChild);
   $(".action-container").appendChild(getActionButton("reset"));
   $(".action-container").appendChild(getActionButton("new match"));
@@ -186,6 +207,15 @@ function startMatchEventHandler() {
   $(".score").style.display = "grid";
 }
 
+function resetEventHandler() {
+  game.resetBoard();
+  renderBoard();
+}
+
+function newMatchEventHandler() {}
+
+function newRoundEventHandler() {}
+
 function getActionButton(action) {
   const button = document.createElement("button");
   switch (action) {
@@ -198,19 +228,19 @@ function getActionButton(action) {
     case "reset":
       button.id = "reset";
       button.textContent = "Reset";
-      //button.addEventListener("click", () => reset);
+      button.addEventListener("click", resetEventHandler);
       break;
 
     case "play again":
       button.id = "play-again";
       button.textContent = "Play Again";
-      //button.addEventListener("click", () => reset);
+      button.addEventListener("click", newRoundEventHandler);
       break;
 
     case "new match":
       button.id = "new-match";
       button.textContent = "New Match";
-    //button.addEventListener("click");
+      button.addEventListener("click", newMatchEventHandler);
 
     default:
       break;
