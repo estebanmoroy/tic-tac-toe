@@ -139,6 +139,12 @@ const gameController = (() => {
       if (game.checkForWinner() === 3) {
         $(".result").style.display = "block";
         $(".result").textContent = "Its a tie!";
+        //replaces reset button with play again
+        $(".action-container").removeChild($(".action-container").firstChild);
+        $(".action-container").insertBefore(
+          getActionButton("play again"),
+          $(".action-container").firstChild
+        );
       } else {
         let winnerName;
         game.checkForWinner() === 1
