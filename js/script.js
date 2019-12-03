@@ -153,10 +153,10 @@ const gameController = (() => {
       if (game.checkForWinner() === 3) {
         $(".result").style.display = "block";
         $(".result").textContent = "Its a tie!";
-        //Replaces reset button with play again.
+        //Replaces reset button with next round.
         $(".action-container").removeChild($(".action-container").firstChild);
         $(".action-container").insertBefore(
-          getActionButton("play again"),
+          getActionButton("next round"),
           $(".action-container").firstChild
         );
       } else {
@@ -176,10 +176,10 @@ const gameController = (() => {
         Array.from($$(".cell")).forEach(cell => {
           cell.removeEventListener("click", makePlayEventHandler);
         });
-        //Replaces reset button with play again.
+        //Replaces reset button with next round.
         $(".action-container").removeChild($(".action-container").firstChild);
         $(".action-container").insertBefore(
-          getActionButton("play again"),
+          getActionButton("next round"),
           $(".action-container").firstChild
         );
       }
@@ -285,9 +285,9 @@ function getActionButton(action) {
       button.addEventListener("click", resetEventHandler);
       break;
 
-    case "play again":
-      button.id = "play-again";
-      button.textContent = "Play Again";
+    case "next round":
+      button.id = "next-round";
+      button.textContent = "Next round";
       button.addEventListener("click", newRoundEventHandler);
       break;
 
